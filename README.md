@@ -1,8 +1,8 @@
 # VSCode Arduino CLI Starter
 
-Started project for using [arduino-cli](https://github.com/arduino/arduino-cli) with visual studio code. 
+Starter project for using [arduino-cli](https://github.com/arduino/arduino-cli) with visual studio code. 
 
-Based on configuration by [Sparkfun](https://learn.sparkfun.com/tutorials/efficient-arduino-programming-with-arduino-cli-and-visual-studio-code/all).
+Based on the configuration by [Sparkfun](https://learn.sparkfun.com/tutorials/efficient-arduino-programming-with-arduino-cli-and-visual-studio-code/all).
 
 ## Installation
 
