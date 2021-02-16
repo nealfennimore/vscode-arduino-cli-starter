@@ -1,0 +1,76 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "bash.exe",
+                "args": [
+                    "-c"
+                ]
+            }
+        }
+    },
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "project",
+            "description": "Which project?",
+            "options": [
+                "blink"
+            ],
+            "default": "blink"
+        },
+        {
+            "type": "promptString",
+            "id": "FQBN",
+            "description": "Fully Qualified Board Name, e.g.: arduino:avr:uno",
+            "default": "esp8266:esp8266:nodemcuv2:baud=921600"
+        },
+        {
+            "type": "promptString",
+            "id": "port",
+            "description": "Upload port, e.g.: COM10 or /dev/ttyACM0",
+            "default": "/dev/ttyUSB0"
+        },
+        {
+            "type": "pickString",
+            "id": "clean",
+            "description": "Optional, cleanup the build folder and do not use any cached build.",
+            "options": [
+                "0",
+                "1",
+            ],
+            "default": "0"
+        }
+    ],
+    "tasks": [
+        {
+            "label": "Compile",
+            "type": "shell",
+            "command": "make compile PORT=${input:port} FQBN=${input:FQBN} PROJECT=${input:project} CLEAN=${input:clean}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Upload",
+            "type": "shell",
+            "command": "make upload PORT=${input:port} FQBN=${input:FQBN} PROJECT=${input:project}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Compile and Upload",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Compile",
+                "Upload"
+            ]
+        }
+    ]
+}
