@@ -6,6 +6,14 @@ Based on the configuration by [Sparkfun](https://learn.sparkfun.com/tutorials/ef
 
 ## Installation
 
+### esp8266
+
+```sh
+arduino-cli core update-index --additional-urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json
+arduino-cli core search esp8266 --additional-urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json
+arduino-cli core install esp8266:esp8266 --additional-urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json
+```
+
 ### Make
 [Make](https://www.gnu.org/software/make/) will need to be installed (For [Windows](http://gnuwin32.sourceforge.net/packages/make.htm))
 
