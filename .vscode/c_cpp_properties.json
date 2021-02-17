@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${env:HOME}/.arduino15/packages/esp8266/tools/**",
+                "${env:HOME}/.arduino15/packages/esp8266/hardware/esp8266/2.7.4/cores/**",
+                "${env:HOME}/.arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/**",
+                "${env:HOME}/.arduino15/packages/esp8266/hardware/esp8266/2.7.4/variants/nodemcu/*",
+                "${env:HOME}/Arduino/libraries/**",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/home/linuxbrew/.linuxbrew/Homebrew/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64",
+            "forcedInclude": []
+        }
+    ],
+    "version": 4
+}
