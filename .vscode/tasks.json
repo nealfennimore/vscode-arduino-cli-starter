@@ -18,21 +18,32 @@
             "id": "project",
             "description": "Which project?",
             "options": [
-                "blink"
+                "blink",
+                "wifi"
             ],
-            "default": "blink"
+            "default": "wifi"
         },
         {
             "type": "promptString",
             "id": "FQBN",
             "description": "Fully Qualified Board Name, e.g.: arduino:avr:uno",
-            "default": "esp8266:esp8266:nodemcuv2:baud=921600"
+            "default": "esp8266:esp8266:nodemcuv2"
         },
         {
             "type": "promptString",
             "id": "port",
             "description": "Upload port, e.g.: COM10 or /dev/ttyACM0",
             "default": "/dev/ttyUSB0"
+        },
+        {
+            "type": "pickString",
+            "id": "baud",
+            "description": "Which baud rate?",
+            "options": [
+                "115200",
+                "96000"
+            ],
+            "default": "115200"
         },
         {
             "type": "pickString",
@@ -49,7 +60,7 @@
         {
             "label": "Compile",
             "type": "shell",
-            "command": "make compile PORT=${input:port} FQBN=${input:FQBN} PROJECT=${input:project} CLEAN=${input:clean}",
+            "command": "make compile PORT=${input:port} BAUD=${input:baud} FQBN=${input:FQBN} PROJECT=${input:project} CLEAN=${input:clean}",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -58,18 +69,42 @@
         {
             "label": "Upload",
             "type": "shell",
-            "command": "make upload PORT=${input:port} FQBN=${input:FQBN} PROJECT=${input:project}",
+            "command": "make upload PORT=${input:port} BAUD=${input:baud} FQBN=${input:FQBN} PROJECT=${input:project}",
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
         },
         {
-            "label": "Compile and Upload",
+            "label": "Screen",
+            "type": "shell",
+            "command": "screen ${input:port} ${input:baud}",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Kill Screen",
+            "type": "shell",
+            "command": "pkill screen",
+        },
+        {
+            "label": "Compile and Upload and Screen",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "Compile",
-                "Upload"
+                "Kill Screen",
+                "Upload",
+                "Screen"
             ]
         }
     ]
