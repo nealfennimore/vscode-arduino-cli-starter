@@ -12,7 +12,7 @@
 
 void setup()
 {
-  pinMode(LED_BUILTIN, OUTPUT); // Initialize the LED_BUILTIN pin as an output
+    pinMode(LED_BUILTIN, OUTPUT); // Initialize the LED_BUILTIN pin as an output
 }
 
 // the loop function runs over and over again forever
