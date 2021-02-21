@@ -28,10 +28,12 @@ ifneq ($(CLEAN), 0)
 	CLEAN_ARG=--clean
 endif
 
+CPPFLAGS = compiler.cpp.extra_flags=-DBAUD=$(BAUD)
+
 all: compile
 
 compile:
-	$(ARDUINO_CLI) compile $(VERBOSE) $(CLEAN_ARG) --fqbn $(FQBN):baud=$(BAUD) $(PROJECTS_BASE)/$(PROJECT)
+	$(ARDUINO_CLI) compile $(VERBOSE) $(CLEAN_ARG) --fqbn $(FQBN):baud=$(BAUD) --build-property $(CPPFLAGS) $(PROJECTS_BASE)/$(PROJECT)
 
 upload:
 	$(ARDUINO_CLI) upload $(VERBOSE) --port $(PORT) --fqbn $(FQBN):baud=$(BAUD) $(PROJECTS_BASE)/$(PROJECT)
