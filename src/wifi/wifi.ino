@@ -1,17 +1,15 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-
-const char *ssid = "";
-const char *password = "";
+#include "wifi.h"
+#include "secrets.h"
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(BAUD);
     delay(20);
-
-    WiFi.begin(ssid, password); // Connect to the network
+    WiFi.begin(credentials.ssid, credentials.password); // Connect to the network
     Serial.print("Connecting to ");
-    Serial.print(ssid);
+    Serial.print(credentials.ssid);
     Serial.println(" ...");
 
     int i = 0;
